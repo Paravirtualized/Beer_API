@@ -11,4 +11,7 @@
 #define PIN_D6 23
 #define PIN_D7 22
 
-in
+int dataPtr = 0;
+int delayCounter = 0;
+int delayCounterTimer = 0;
+int delayCounterTim
