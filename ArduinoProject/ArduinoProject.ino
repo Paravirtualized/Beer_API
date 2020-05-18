@@ -14,4 +14,8 @@
 int dataPtr = 0;
 int delayCounter = 0;
 int delayCounterTimer = 0;
-int delayCounterTim
+int delayCounterTimerMax = 4;
+
+void setup() {
+
+  // This is only used if you want to attempt to let the Arduino generat
