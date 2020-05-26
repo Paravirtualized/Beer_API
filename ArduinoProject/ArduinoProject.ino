@@ -19,4 +19,5 @@ int delayCounterTimerMax = 4;
 void setup() {
 
   // This is only used if you want to attempt to let the Arduino generate the 4Mhz clock
-  // that the SN76489 requires to operate.  NOTE: Beacuse this 
+  // that the SN76489 requires to operate.  NOTE: Beacuse this uses a custom PWM to generate it
+  // It MUST use pin 10 as in the clock define above.  
