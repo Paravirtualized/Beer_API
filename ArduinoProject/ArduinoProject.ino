@@ -24,4 +24,8 @@ void setup() {
   // device on the board however, you can leave the next line commented and not bother connecting a wire
   //setupFourMhzTimer(); 
 
-  // S
+  // Set up the R/W pin
+  pinMode(WE, OUTPUT);
+  digitalWrite(WE, HIGH);
+
+  // Set up the Dat
