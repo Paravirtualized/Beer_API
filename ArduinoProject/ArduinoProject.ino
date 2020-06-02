@@ -35,4 +35,8 @@ void setup() {
   pinMode(PIN_D3, OUTPUT);
   pinMode(PIN_D4, OUTPUT);
   pinMode(PIN_D5, OUTPUT);
-  pinMode(PIN_D6, OUT
+  pinMode(PIN_D6, OUTPUT);
+  pinMode(PIN_D7, OUTPUT);
+
+  // Set them all to logic 0
+  digitalWrit
