@@ -28,4 +28,8 @@ void setup() {
   pinMode(WE, OUTPUT);
   digitalWrite(WE, HIGH);
 
-  // Set up the Dat
+  // Set up the Data I/O pins
+  pinMode(PIN_D0, OUTPUT);
+  pinMode(PIN_D1, OUTPUT);
+  pinMode(PIN_D2, OUTPUT);
+  pinMode(PIN_
