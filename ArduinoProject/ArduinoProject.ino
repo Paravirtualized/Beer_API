@@ -39,4 +39,7 @@ void setup() {
   pinMode(PIN_D7, OUTPUT);
 
   // Set them all to logic 0
-  digitalWrit
+  digitalWrite(PIN_D0, LOW);
+  digitalWrite(PIN_D1, LOW);
+  digitalWrite(PIN_D2, LOW);
+  digitalWrite(P
