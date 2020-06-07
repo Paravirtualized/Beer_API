@@ -45,4 +45,10 @@ void setup() {
   digitalWrite(PIN_D3, LOW);
   digitalWrite(PIN_D4, LOW);
   digitalWrite(PIN_D5, LOW);
-  digitalWrite(P
+  digitalWrite(PIN_D6, LOW);
+  digitalWrite(PIN_D7, LOW);
+
+  // Initialise the SN76489
+  InitiliseSoundChip();
+
+  
