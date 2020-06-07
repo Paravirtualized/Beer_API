@@ -42,4 +42,7 @@ void setup() {
   digitalWrite(PIN_D0, LOW);
   digitalWrite(PIN_D1, LOW);
   digitalWrite(PIN_D2, LOW);
+  digitalWrite(PIN_D3, LOW);
+  digitalWrite(PIN_D4, LOW);
+  digitalWrite(PIN_D5, LOW);
   digitalWrite(P
