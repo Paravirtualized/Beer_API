@@ -51,4 +51,8 @@ void setup() {
   // Initialise the SN76489
   InitiliseSoundChip();
 
-  
+  // and the inbound default serial port
+  Serial.begin(115200);
+}
+
+void setupFourMhzTimer()
