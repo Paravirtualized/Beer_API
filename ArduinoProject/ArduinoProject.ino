@@ -56,3 +56,6 @@ void setup() {
 }
 
 void setupFourMhzTimer()
+{
+  // Iv'e no idea how this works :-)  I grabbed it off the arduino forums
+  // I ma
