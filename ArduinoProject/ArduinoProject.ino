@@ -59,4 +59,6 @@ void setupFourMhzTimer()
 {
   // Iv'e no idea how this works :-)  I grabbed it off the arduino forums
   // I made an attempt to understand it, but every tweak I made I killed it!!!
-  // it works, it gives 4Mhz, so I'm
+  // it works, it gives 4Mhz, so I'm just leaving it at that.
+  pinMode(CLOCK, OUTPUT);
+  TCCR2A = 
