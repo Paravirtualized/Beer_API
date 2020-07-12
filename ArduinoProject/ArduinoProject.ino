@@ -61,4 +61,7 @@ void setupFourMhzTimer()
   // I made an attempt to understand it, but every tweak I made I killed it!!!
   // it works, it gives 4Mhz, so I'm just leaving it at that.
   pinMode(CLOCK, OUTPUT);
-  TCCR2A = 
+  TCCR2A = ((1 << WGM21) | (1 << COM2A0)); //0x23;
+  TCCR2B = (1 << CS20); //0x09;
+  
+  
