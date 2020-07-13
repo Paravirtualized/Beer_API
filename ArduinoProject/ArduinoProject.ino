@@ -64,4 +64,12 @@ void setupFourMhzTimer()
   TCCR2A = ((1 << WGM21) | (1 << COM2A0)); //0x23;
   TCCR2B = (1 << CS20); //0x09;
   
+  OCR2A  = 0x02;
+  TIMSK2 = 0x00;
   
+  OCR2B  = 0x01;
+}
+
+void InitiliseSoundChip()
+{
+  // D
