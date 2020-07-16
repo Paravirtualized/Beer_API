@@ -72,4 +72,5 @@ void setupFourMhzTimer()
 
 void InitiliseSoundChip()
 {
-  // D
+  // Do the well known BOOO-BEEP BBC Initialisation sound.
+  // Yes, it does actu
