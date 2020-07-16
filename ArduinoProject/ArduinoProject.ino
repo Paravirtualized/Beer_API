@@ -75,4 +75,5 @@ void InitiliseSoundChip()
   // Do the well known BOOO-BEEP BBC Initialisation sound.
   // Yes, it does actually serve a purpose :-)
 
-  // The low tone that all BBCs play on startup (Before th
+  // The low tone that all BBCs play on startup (Before the higher beep all owners are used to) is actually
+  // The default tone on 
