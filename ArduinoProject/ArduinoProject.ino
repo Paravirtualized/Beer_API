@@ -77,4 +77,6 @@ void InitiliseSoundChip()
 
   // The low tone that all BBCs play on startup (Before the higher beep all owners are used to) is actually
   // The default tone on channel 2 of the SN76489 sound chip.  It produces this to let you know that it's working
-  // and ready to recieve commands, and starts to produce it as soon as power is appl
+  // and ready to recieve commands, and starts to produce it as soon as power is applied to the device.
+
+  // We allow the default tone to be heard for half a second or s
