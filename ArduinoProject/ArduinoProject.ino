@@ -79,4 +79,7 @@ void InitiliseSoundChip()
   // The default tone on channel 2 of the SN76489 sound chip.  It produces this to let you know that it's working
   // and ready to recieve commands, and starts to produce it as soon as power is applied to the device.
 
-  // We allow the default tone to be heard for half a second or s
+  // We allow the default tone to be heard for half a second or so...
+  delay(500);
+
+  // Now we send the first batch of commands the BBC does on
