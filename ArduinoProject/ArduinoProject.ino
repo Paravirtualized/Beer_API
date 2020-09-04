@@ -82,4 +82,5 @@ void InitiliseSoundChip()
   // We allow the default tone to be heard for half a second or so...
   delay(500);
 
-  // Now we send the first batch of commands the BBC does on
+  // Now we send the first batch of commands the BBC does on start up to the sound chip
+  SendByteToSoundChip(0x82); // First byte of set F
