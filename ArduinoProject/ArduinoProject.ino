@@ -83,4 +83,5 @@ void InitiliseSoundChip()
   delay(500);
 
   // Now we send the first batch of commands the BBC does on start up to the sound chip
-  SendByteToSoundChip(0x82); // First byte of set F
+  SendByteToSoundChip(0x82); // First byte of set Frequency on Tone 3 to decimal 1010
+  SendByteToSoundChip(0x3F); // Second byte of set
