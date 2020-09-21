@@ -89,4 +89,5 @@ void InitiliseSoundChip()
   SendByteToSoundChip(0xA1); // First byte of set Frequency on Tone 2 to decimal 1009
   SendByteToSoundChip(0x3F); // Second byte of set Frequency on Tone 2 to decimal 1009
   SendByteToSoundChip(0xDF); // Silence Tone Channel 1 (Volume is inverted on the beeb so 15 is silence, 0 is Loud)
-  SendByteToSoundChip(0xC0); // First byte of set
+  SendByteToSoundChip(0xC0); // First byte of set Frequency on Tone 1 to decimal 1008
+  SendByteToSoundChip(0x3F); // Second byte of set Frequency on To
