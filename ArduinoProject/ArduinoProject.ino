@@ -94,4 +94,5 @@ void InitiliseSoundChip()
   SendByteToSoundChip(0xFF); // Silence Noise Channel
   SendByteToSoundChip(0xE0); // Set noise channel to periodic noise with a low frequency
 
-  // Now we wait a
+  // Now we wait a 50th of a second (I got these timings from the VGM file I recorded from a BBC Emulator)
+ 
