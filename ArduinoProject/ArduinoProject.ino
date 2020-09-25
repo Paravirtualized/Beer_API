@@ -92,4 +92,6 @@ void InitiliseSoundChip()
   SendByteToSoundChip(0xC0); // First byte of set Frequency on Tone 1 to decimal 1008
   SendByteToSoundChip(0x3F); // Second byte of set Frequency on Tone 1 to decimal 1008
   SendByteToSoundChip(0xFF); // Silence Noise Channel
-  SendByteToS
+  SendByteToSoundChip(0xE0); // Set noise channel to periodic noise with a low frequency
+
+  // Now we wait a
