@@ -95,4 +95,7 @@ void InitiliseSoundChip()
   SendByteToSoundChip(0xE0); // Set noise channel to periodic noise with a low frequency
 
   // Now we wait a 50th of a second (I got these timings from the VGM file I recorded from a BBC Emulator)
- 
+  delay(20);
+
+  // Next block of commands to the sound chip
+  SendByteToSoundChip(0x92); // Set volume on tone 
