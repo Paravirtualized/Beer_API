@@ -98,4 +98,5 @@ void InitiliseSoundChip()
   delay(20);
 
   // Next block of commands to the sound chip
-  SendByteToSoundChip(0x92); // Set volume on tone 
+  SendByteToSoundChip(0x92); // Set volume on tone channel 3 to 2
+  SendByteToSoundChip(0x8F); // First byte of set Frequency on Tone 3 to
