@@ -105,4 +105,10 @@ void InitiliseSoundChip()
   // Delay 15 50ths of a second (Approx 1 3rd of a sec)
   delay(300);
 
-  // And finally the last
+  // And finally the last sound chip command
+  SendByteToSoundChip(0x9F); // Silence Tone 3
+}
+
+void SendByteToSoundChip(byte b)
+{
+  // Fi
