@@ -111,4 +111,5 @@ void InitiliseSoundChip()
 
 void SendByteToSoundChip(byte b)
 {
-  // Fi
+  // First split up the byte to send onto the individual I/O pins of the 
+  /
