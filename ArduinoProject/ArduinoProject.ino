@@ -112,4 +112,6 @@ void InitiliseSoundChip()
 void SendByteToSoundChip(byte b)
 {
   // First split up the byte to send onto the individual I/O pins of the 
-  /
+  // chip's 8 bit data bus.
+  digitalWrite(PIN_D0, (b&1)?HIGH:LOW);
+  digitalWr
