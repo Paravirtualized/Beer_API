@@ -116,4 +116,6 @@ void SendByteToSoundChip(byte b)
   digitalWrite(PIN_D0, (b&1)?HIGH:LOW);
   digitalWrite(PIN_D1, (b&2)?HIGH:LOW);
   digitalWrite(PIN_D2, (b&4)?HIGH:LOW);
-  digitalW
+  digitalWrite(PIN_D3, (b&8)?HIGH:LOW);
+  digitalWrite(PIN_D4, (b&16)?HIGH:LOW);
+  digitalWrite(PIN_D
