@@ -120,4 +120,6 @@ void SendByteToSoundChip(byte b)
   digitalWrite(PIN_D4, (b&16)?HIGH:LOW);
   digitalWrite(PIN_D5, (b&32)?HIGH:LOW);
   digitalWrite(PIN_D6, (b&64)?HIGH:LOW);
-  digital
+  digitalWrite(PIN_D7, (b&128)?HIGH:LOW);
+  
+  // Then pulse the write enable line low for
