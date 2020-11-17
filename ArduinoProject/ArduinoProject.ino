@@ -122,4 +122,5 @@ void SendByteToSoundChip(byte b)
   digitalWrite(PIN_D6, (b&64)?HIGH:LOW);
   digitalWrite(PIN_D7, (b&128)?HIGH:LOW);
   
-  // Then pulse the write enable line low for
+  // Then pulse the write enable line low for one millisecond.  The R/W line on the SN76489 is inverted
+  // that is it commonly
