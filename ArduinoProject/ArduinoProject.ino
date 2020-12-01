@@ -124,4 +124,7 @@ void SendByteToSoundChip(byte b)
   
   // Then pulse the write enable line low for one millisecond.  The R/W line on the SN76489 is inverted
   // that is it commonly spoken as "Read NOT Write" which essentially means that to write the data on the Dx
-  // input pins you briefly have to pull the write line low, then return it hig
+  // input pins you briefly have to pull the write line low, then return it high for normal read operation.
+  digitalWrite(WE, LOW);
+  delay(1);
+  digitalWrite(WE, 
