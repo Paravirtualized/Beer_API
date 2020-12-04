@@ -127,4 +127,9 @@ void SendByteToSoundChip(byte b)
   // input pins you briefly have to pull the write line low, then return it high for normal read operation.
   digitalWrite(WE, LOW);
   delay(1);
-  digitalWrite(WE, 
+  digitalWrite(WE, HIGH);
+  
+}
+
+// This is the main program runtime loop fo the Arduino firmware.
+vo
