@@ -135,4 +135,8 @@ void SendByteToSoundChip(byte b)
 void loop() {
 
   // If there's anything coming down from the PC, just throw it
-  // straight to t
+  // straight to the sound chip.  No ceremony here......
+  if(Serial.available() > 0)
+  {
+    byte b = Serial.read();
+ 
