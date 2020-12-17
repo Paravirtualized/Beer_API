@@ -139,4 +139,7 @@ void loop() {
   if(Serial.available() > 0)
   {
     byte b = Serial.read();
- 
+    SendByteToSoundChip(b);
+  }
+
+}
