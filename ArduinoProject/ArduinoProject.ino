@@ -132,4 +132,7 @@ void SendByteToSoundChip(byte b)
 }
 
 // This is the main program runtime loop fo the Arduino firmware.
-vo
+void loop() {
+
+  // If there's anything coming down from the PC, just throw it
+  // straight to t
