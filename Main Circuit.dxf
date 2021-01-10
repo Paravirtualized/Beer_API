@@ -654,3 +654,94 @@ VPORT
  50
 0.0
  51
+0.0
+ 71
+     0
+ 72
+  1000
+ 73
+     1
+ 74
+     3
+ 75
+     0
+ 76
+     1
+ 77
+     0
+ 78
+     0
+  0
+ENDTAB
+  0
+TABLE
+  2
+LTYPE
+ 70
+     3
+  0
+LTYPE
+  2
+CONTINUOUS
+ 70
+     0
+  3
+Solid line
+ 72
+    65
+ 73
+     0
+ 40
+0.0
+  0
+ENDTAB
+  0
+TABLE
+  2
+LAYER
+ 70
+     8
+  0
+LAYER
+  2
+0
+ 70
+     0
+ 62
+     7
+  6
+CONTINUOUS
+  0
+LAYER
+  2
+COMPONENTS
+ 70
+     0
+ 62
+   170
+  6
+CONTINUOUS
+  0
+LAYER
+  2
+DATA_BUS
+ 70
+     0
+ 62
+    40
+  6
+CONTINUOUS
+  0
+LAYER
+  2
+CONTROL
+ 70
+     0
+ 62
+    70
+  6
+CONTINUOUS
+  0
+LAYER
+  2
+POWER
