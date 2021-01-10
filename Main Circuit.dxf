@@ -745,3 +745,101 @@ CONTINUOUS
 LAYER
   2
 POWER
+ 70
+     0
+ 62
+    10
+  6
+CONTINUOUS
+  0
+LAYER
+  2
+GROUND
+ 70
+     0
+ 62
+   200
+  6
+CONTINUOUS
+  0
+LAYER
+  2
+AUDIO
+ 70
+     0
+ 62
+    50
+  6
+CONTINUOUS
+  0
+ENDTAB
+  0
+TABLE
+  2
+STYLE
+ 70
+     2
+  0
+STYLE
+  2
+STANDARD
+ 70
+     0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+     0
+ 42
+0.2
+  3
+txt
+  4
+
+  0
+STYLE
+  2
+ANNOTATIVE
+ 70
+     0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+     0
+ 42
+0.2
+  3
+txt
+  4
+
+  0
+ENDTAB
+  0
+TABLE
+  2
+VIEW
+ 70
+     6
+  0
+ENDTAB
+  0
+TABLE
+  2
+UCS
+ 70
+     0
+  0
+ENDTAB
+  0
+TABLE
+  2
+APPID
+ 70
+    12
