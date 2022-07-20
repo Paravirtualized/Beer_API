@@ -38398,3 +38398,77 @@ CONTINUOUS
  30
 0.0
  11
+0.625
+ 21
+13.81344951543673
+ 31
+0.0
+  0
+ENDBLK
+  5
+A49
+  8
+0
+  0
+ENDSEC
+  0
+SECTION
+  2
+ENTITIES
+  0
+POLYLINE
+  5
+29B
+  8
+COMPONENTS
+ 66
+     1
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 70
+     1
+  0
+VERTEX
+  5
+4E9
+  8
+COMPONENTS
+ 10
+2.5
+ 20
+22.5
+ 30
+0.0
+  0
+VERTEX
+  5
+4EA
+  8
+COMPONENTS
+ 10
+12.5
+ 20
+22.5
+ 30
+0.0
+  0
+VERTEX
+  5
+4EB
+  8
+COMPONENTS
+ 10
+12.5
+ 20
+15.0
+ 30
+0.0
+  0
+VERTEX
+  5
+4EC
+  8
