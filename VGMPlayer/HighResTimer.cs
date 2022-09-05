@@ -59,3 +59,84 @@ namespace VGMPlayer
 
     public long Interval
     {
+      get
+      {
+        return System.Threading.Interlocked.Read(
+            ref _timerIntervalInMicroSec);
+      }
+      set
+      {
+        System.Threading.Interlocked.Exchange(
+            ref _timerIntervalInMicroSec, value);
+      }
+    }
+
+    public long IgnoreEventIfLateBy
+    {
+      get
+      {
+        return System.Threading.Interlocked.Read(
+            ref _ignoreEventIfLateBy);
+      }
+      set
+      {
+        System.Threading.Interlocked.Exchange(
+            ref _ignoreEventIfLateBy, value <= 0 ? long.MaxValue : value);
+      }
+    }
+
+    public bool Enabled
+    {
+      set
+      {
+        if (value)
+        {
+          Start();
+        }
+        else
+        {
+          Stop();
+        }
+      }
+      get
+      {
+        return (_threadTimer != null && _threadTimer.IsAlive);
+      }
+    }
+
+    public void Start()
+    {
+      if (Enabled || Interval <= 0)
+      {
+        return;
+      }
+
+      _stopTimer = false;
+
+      System.Threading.ThreadStart threadStart = delegate ()
+      {
+        NotificationTimer(ref _timerIntervalInMicroSec,
+                          ref _ignoreEventIfLateBy,
+                          ref _stopTimer);
+      };
+
+      _threadTimer = new System.Threading.Thread(threadStart);
+      _threadTimer.Priority = System.Threading.ThreadPriority.Highest;
+      _threadTimer.Start();
+    }
+
+    public void Stop()
+    {
+      _stopTimer = true;
+    }
+
+    public void StopAndWait()
+    {
+      StopAndWait(System.Threading.Timeout.Infinite);
+    }
+
+    public bool StopAndWait(int timeoutInMilliSec)
+    {
+      _stopTimer = true;
+
+      if (!Enabled || _threadTimer.ManagedThreadId ==
