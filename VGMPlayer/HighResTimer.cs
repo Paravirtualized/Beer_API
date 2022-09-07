@@ -225,3 +225,15 @@ namespace VGMPlayer
     public long CallbackFunctionExecutionTime { get; private set; }
 
     public MicroTimerEventArgs(int timerCount,
+                               long elapsedMicroseconds,
+                               long timerLateBy,
+                               long callbackFunctionExecutionTime)
+    {
+      TimerCount = timerCount;
+      ElapsedMicroseconds = elapsedMicroseconds;
+      TimerLateBy = timerLateBy;
+      CallbackFunctionExecutionTime = callbackFunctionExecutionTime;
+    }
+
+  }
+}
