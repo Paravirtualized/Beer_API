@@ -140,3 +140,88 @@ namespace VGMPlayer
       _stopTimer = true;
 
       if (!Enabled || _threadTimer.ManagedThreadId ==
+          System.Threading.Thread.CurrentThread.ManagedThreadId)
+      {
+        return true;
+      }
+
+      return _threadTimer.Join(timeoutInMilliSec);
+    }
+
+    public void Abort()
+    {
+      _stopTimer = true;
+
+      if (Enabled)
+      {
+        _threadTimer.Abort();
+      }
+    }
+
+    void NotificationTimer(ref long timerIntervalInMicroSec,
+                           ref long ignoreEventIfLateBy,
+                           ref bool stopTimer)
+    {
+      int timerCount = 0;
+      long nextNotification = 0;
+
+      MicroStopwatch microStopwatch = new MicroStopwatch();
+      microStopwatch.Start();
+
+      while (!stopTimer)
+      {
+        long callbackFunctionExecutionTime =
+            microStopwatch.ElapsedMicroseconds - nextNotification;
+
+        long timerIntervalInMicroSecCurrent =
+            System.Threading.Interlocked.Read(ref timerIntervalInMicroSec);
+        long ignoreEventIfLateByCurrent =
+            System.Threading.Interlocked.Read(ref ignoreEventIfLateBy);
+
+        nextNotification += timerIntervalInMicroSecCurrent;
+        timerCount++;
+        long elapsedMicroseconds = 0;
+
+        while ((elapsedMicroseconds = microStopwatch.ElapsedMicroseconds)
+                < nextNotification)
+        {
+          System.Threading.Thread.SpinWait(10);
+        }
+
+        long timerLateBy = elapsedMicroseconds - nextNotification;
+
+        if (timerLateBy >= ignoreEventIfLateByCurrent)
+        {
+          continue;
+        }
+
+        MicroTimerEventArgs microTimerEventArgs =
+             new MicroTimerEventArgs(timerCount,
+                                     elapsedMicroseconds,
+                                     timerLateBy,
+                                     callbackFunctionExecutionTime);
+        MicroTimerElapsed(this, microTimerEventArgs);
+      }
+
+      microStopwatch.Stop();
+    }
+  }
+
+  /// <summary>
+  /// MicroTimer Event Argument class
+  /// </summary>
+  public class MicroTimerEventArgs : EventArgs
+  {
+    // Simple counter, number times timed event (callback function) executed
+    public int TimerCount { get; private set; }
+
+    // Time when timed event was called since timer started
+    public long ElapsedMicroseconds { get; private set; }
+
+    // How late the timer was compared to when it should have been called
+    public long TimerLateBy { get; private set; }
+
+    // Time it took to execute previous call to callback function (OnTimedEvent)
+    public long CallbackFunctionExecutionTime { get; private set; }
+
+    public MicroTimerEventArgs(int timerCount,
