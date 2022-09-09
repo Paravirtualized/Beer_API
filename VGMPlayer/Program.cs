@@ -9,4 +9,6 @@ namespace VGMPlayer
 {
   class Program
   {
-    
+    static VgmFile vgmFile = new VgmFile();
+    static MicroTimer timer;
+    static bool
