@@ -11,4 +11,9 @@ namespace VGMPlayer
   {
     static VgmFile vgmFile = new VgmFile();
     static MicroTimer timer;
-    static bool
+    static bool displayRunning = false;
+
+    static void DisplayThread()
+    {
+      Console.Clear();
+ 
