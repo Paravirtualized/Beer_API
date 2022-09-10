@@ -16,4 +16,7 @@ namespace VGMPlayer
     static void DisplayThread()
     {
       Console.Clear();
- 
+      while (displayRunning)
+      {
+        Console.SetCursorPosition(0, 0);
+   
