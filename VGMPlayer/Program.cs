@@ -19,4 +19,6 @@ namespace VGMPlayer
       while (displayRunning)
       {
         Console.SetCursorPosition(0, 0);
-   
+        Console.Write("BBC Micro VGM Player (Serial Port Arduino Version)");
+
+        
