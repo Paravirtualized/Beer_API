@@ -22,4 +22,7 @@ namespace VGMPlayer
         Console.Write("BBC Micro VGM Player (Serial Port Arduino Version)");
 
         Console.SetCursorPosition(0, 2);
-        Console.Write("Delay {0}     ", 
+        Console.Write("Delay {0}     ", vgmFile.DelayCounter);
+
+        Console.SetCursorPosition(0, 3);
+        Console.Write("Last Byt
