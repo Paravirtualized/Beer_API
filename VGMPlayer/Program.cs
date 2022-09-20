@@ -25,4 +25,6 @@ namespace VGMPlayer
         Console.Write("Delay {0}     ", vgmFile.DelayCounter);
 
         Console.SetCursorPosition(0, 3);
-        Console.Write("Last Byt
+        Console.Write("Last Byte Sent: 0x{0:X}     ", vgmFile.LastByteSent);
+
+        Console.SetCursorPosition(
