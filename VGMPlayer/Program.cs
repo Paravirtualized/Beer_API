@@ -27,4 +27,7 @@ namespace VGMPlayer
         Console.SetCursorPosition(0, 3);
         Console.Write("Last Byte Sent: 0x{0:X}     ", vgmFile.LastByteSent);
 
-        Console.SetCursorPosition(
+        Console.SetCursorPosition(0, 4);
+        Console.Write("Tone 3 Volume: {0}".PadRight(60, ' '), vgmFile.Tone3Volume);
+
+  
