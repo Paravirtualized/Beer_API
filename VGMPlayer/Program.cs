@@ -31,4 +31,6 @@ namespace VGMPlayer
         Console.Write("Tone 3 Volume: {0}".PadRight(60, ' '), vgmFile.Tone3Volume);
 
         Console.SetCursorPosition(0, 5);
-        Console.Write("Tone 2 Volume: {
+        Console.Write("Tone 2 Volume: {0}".PadRight(60, ' '), vgmFile.Tone2Volume);
+
+        Console.SetCursorPositi
