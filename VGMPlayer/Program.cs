@@ -40,4 +40,7 @@ namespace VGMPlayer
         Console.Write(" Noise Volume: {0}".PadRight(60, ' '), vgmFile.NoiseVolume);
 
         Console.SetCursorPosition(0, 9);
-        Console.WriteLine("3 {0}".PadRight(60, ' '), new String('*', 
+        Console.WriteLine("3 {0}".PadRight(60, ' '), new String('*', vgmFile.Tone3Bar));
+
+        Console.SetCursorPosition(0, 10);
+        Console.WriteL
