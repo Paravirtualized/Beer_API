@@ -45,4 +45,5 @@ namespace VGMPlayer
         Console.SetCursorPosition(0, 10);
         Console.WriteLine("2 {0}".PadRight(60, ' '), new String('*', vgmFile.Tone2Bar));
 
-        Con
+        Console.SetCursorPosition(0, 11);
+        Console.WriteLine("1 {0}".PadRigh
