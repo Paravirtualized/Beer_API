@@ -50,4 +50,8 @@ namespace VGMPlayer
       }
       Console.SetCursorPosition(0, 14);
       Console.WriteLine("Song Finished, Please Press Return to Exit");
-    
+    }
+
+    static void CallPlayer(object stateInfo, MicroTimerEventArgs e)
+    {
+     
