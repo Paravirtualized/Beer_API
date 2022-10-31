@@ -48,4 +48,6 @@ namespace VGMPlayer
         Console.SetCursorPosition(0, 11);
         Console.WriteLine("1 {0}".PadRight(60, ' '), new String('*', vgmFile.Tone1Bar));
       }
-      Console.SetCur
+      Console.SetCursorPosition(0, 14);
+      Console.WriteLine("Song Finished, Please Press Return to Exit");
+    
