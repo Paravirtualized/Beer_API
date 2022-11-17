@@ -57,4 +57,11 @@ namespace VGMPlayer
       if(vgmFile.SongLooping)
       {
         displayRunning = false;
-        timer.Ena
+        timer.Enabled = false;
+        timer.Stop();
+      }
+
+      vgmFile.PlayNext();
+    }
+
+    static voi
