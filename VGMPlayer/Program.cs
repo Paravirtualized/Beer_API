@@ -64,4 +64,6 @@ namespace VGMPlayer
       vgmFile.PlayNext();
     }
 
-    static voi
+    static void Main(string[] args)
+    {
+      vgmFile.Load(@"C:\BBC Micro Emulation\Embeded Stuff\dre
