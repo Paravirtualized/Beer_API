@@ -54,4 +54,7 @@ namespace VGMPlayer
 
     static void CallPlayer(object stateInfo, MicroTimerEventArgs e)
     {
-     
+      if(vgmFile.SongLooping)
+      {
+        displayRunning = false;
+        timer.Ena
