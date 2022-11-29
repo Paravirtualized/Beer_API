@@ -66,4 +66,6 @@ namespace VGMPlayer
 
     static void Main(string[] args)
     {
-      vgmFile.Load(@"C:\BBC Micro Emulation\Embeded Stuff\dre
+      vgmFile.Load(@"C:\BBC Micro Emulation\Embeded Stuff\dreamscape.vgm"); // CHANGE THIS TO THE FILE YOU WANT TO PLAY
+
+      timer = new MicroTi
