@@ -71,4 +71,7 @@ namespace VGMPlayer
       timer = new MicroTimer();
       timer.MicroTimerElapsed += new MicroTimer.MicroTimerElapsedEventHandler(CallPlayer);
       timer.Interval = 22; // NOTE: This is 22 MICROSECONDS, NOT MILLISECONDS as is usually the case in windows/dotnet
-      
+      timer.Enabled = true;
+
+      Thread songInfoThread = new Thread(new ThreadStart(DisplayThread));
+   
