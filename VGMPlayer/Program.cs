@@ -74,4 +74,7 @@ namespace VGMPlayer
       timer.Enabled = true;
 
       Thread songInfoThread = new Thread(new ThreadStart(DisplayThread));
-   
+      displayRunning = true;
+      songInfoThread.Start();
+
+      Console.
