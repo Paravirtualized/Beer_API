@@ -80,4 +80,6 @@ namespace VGMPlayer
       Console.SetCursorPosition(0, 13);
       Console.WriteLine("Press return to exit.");
 
- 
+      // Wait for return to be pressed.....
+      Console.ReadLine();
+      displayRunni
