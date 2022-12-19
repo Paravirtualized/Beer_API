@@ -77,4 +77,7 @@ namespace VGMPlayer
       displayRunning = true;
       songInfoThread.Start();
 
-      Console.
+      Console.SetCursorPosition(0, 13);
+      Console.WriteLine("Press return to exit.");
+
+ 
