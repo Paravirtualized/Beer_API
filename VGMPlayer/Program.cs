@@ -82,4 +82,11 @@ namespace VGMPlayer
 
       // Wait for return to be pressed.....
       Console.ReadLine();
-      displayRunni
+      displayRunning = false;
+      timer.Enabled = false;
+      timer.Stop();
+
+    }
+
+  }
+}
