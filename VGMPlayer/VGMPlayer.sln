@@ -16,4 +16,7 @@ Global
 		{EB6E23BC-60B7-4FA3-AA53-67DBB6AF4103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB6E23BC-60B7-4FA3-AA53-67DBB6AF4103}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionPrope
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Exte
