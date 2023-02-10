@@ -40,3 +40,90 @@ namespace VGMPlayer
     private byte barMax = 32; // Maximum size a bar value can be
     private byte barSpeed = 0; // Counter to track bar speed
     private byte barSpeedMax = 192; // How many itterations of the play loop before we reduce a bar value;
+
+    // These 3 vars are public (That is they can be accessed outside the player class) and are read only.
+    public bool SongLooping { get; private set; }
+    public int DelayCounter { get { return _delayCounter; } }
+    public byte LastByteSent { get; private set; }
+
+    public byte Tone3Volume { get; private set; }
+    public byte Tone2Volume { get; private set; }
+    public byte Tone1Volume { get; private set; }
+    public byte NoiseVolume { get; private set; }
+
+    public byte Tone3Bar { get; private set; }
+    public byte Tone2Bar { get; private set; }
+    public byte Tone1Bar { get; private set; }
+
+    public void Load(string fileName)
+    {
+      Stream fileStream = new FileStream(fileName, FileMode.Open);
+      BinaryReader reader = new BinaryReader(fileStream);
+
+      LoadHeader(reader);
+      LoadChipData(reader);
+
+      fileStream.Close();
+
+      SongLooping = false;
+    }
+
+    public void PlayNext()
+    {
+      // Plays the next available entry in the chip data array, this is designed to be called repeatedly
+      // from a loop outside the class, so each call of it will decode one command only.
+
+      // Adjust our tone counters
+      if (barSpeed == 0)
+      {
+        Tone3Bar--; if (Tone3Bar < 1) { Tone3Bar = 1; }; if (Tone3Bar > barMax) { Tone3Bar = barMax; }
+        Tone2Bar--; if (Tone2Bar < 1) { Tone2Bar = 1; }; if (Tone2Bar > barMax) { Tone2Bar = barMax; }
+        Tone1Bar--; if (Tone1Bar < 1) { Tone1Bar = 1; }; if (Tone1Bar > barMax) { Tone1Bar = barMax; }
+        barSpeed = barSpeedMax;
+      }
+      else
+      {
+        barSpeed--;
+      }
+
+      // If we have a delay set
+      if (_delayCounter > 0)
+      {
+        // THIS WAS THE OLD WAY OF DOING THE TIMING UNTIL I MANAGED TO USE A HIGH RES TIMER
+        // IVE NOT TRIED THIS ON ANYTHING OTHER THAN WINDOWS 7 YET, SO MAY HAVE TO Go
+        // BACK TO USING THIS ON OTHER PLATFORMS
+        // Increment our delay timer 
+        //_delayCounterTimer++;
+        // And if it's hit our max.....
+        //if(_delayCounterTimer > _delayCounterTimerMax)
+        //{
+          // Decrement the actual delay and reset the timer
+          _delayCounter--;
+          //_delayCounterTimer = 0;
+        //}
+        return;
+      }
+
+      // if our delayCounter is 0 then we get here, ready to decode the next command
+
+      byte currentDataByte = _chipData[_dataPointer];
+
+      // Now we decode our VGM chip data commands.
+      // In the case of the SN76489 in the BBC not all the commands are used, so we decode
+      // only the one we are interested in.
+
+      switch (currentDataByte)
+      {
+        case 0x61:
+          // Set a delay counter value, low byte is in the next byte, high in the one following that
+          int delayVal = (_chipData[_dataPointer + 2] << 8) + _chipData[_dataPointer + 1];
+          _delayCounter = delayVal;
+          _dataPointer = _dataPointer + 3; // Increase pointer to next data entry
+
+          //Console.WriteLine("Set Delay {0}", _delayCounter);
+          break;
+
+        case 0x63:
+          // Short cut for a 1/50th of a second delay
+          _delayCounter = 0x7203; // See VGM spec for these values (These are 20ms on a PAL System running at 4Mhz)
+          _dataPointer++; // Increase pointer to next data entry;
