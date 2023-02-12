@@ -127,3 +127,95 @@ namespace VGMPlayer
           // Short cut for a 1/50th of a second delay
           _delayCounter = 0x7203; // See VGM spec for these values (These are 20ms on a PAL System running at 4Mhz)
           _dataPointer++; // Increase pointer to next data entry;
+
+          //Console.WriteLine("Set 1/50th Second Delay");
+          break;
+
+        case 0x50:
+          // This is an actual raw byte to send to the sound chip
+          byte chipByte = _chipData[_dataPointer + 1];
+          _dataPointer = _dataPointer + 2; // Increase pointer to the next entry
+
+          _serialSender.Send(chipByte);
+
+          // Extract some usefull info from the command
+          // Where not going to do frequencies or anything like that, beacuse they are 2 byte
+          // we risk slowing down the high presicion send loop too much.
+
+          // Volumes however are simple.
+          if ((chipByte & 0x90) == 0x90)
+          {
+            Tone3Volume = (byte)(chipByte & 0x0F);
+          }
+
+          if ((chipByte & 0xB0) == 0xB0)
+          {
+            Tone2Volume = (byte)(chipByte & 0x0F);
+          }
+
+          if ((chipByte & 0xD0) == 0xD0)
+          {
+            Tone1Volume = (byte)(chipByte & 0x0F);
+          }
+
+          if ((chipByte & 0xF0) == 0xF0)
+          {
+            NoiseVolume = (byte)(chipByte & 0x0F);
+          }
+
+          // and we can at least do some simple counters, that we set to max
+          // when a frequency on a channel is triggered, and count down
+          // so while not frequency related, we can at least do a simple
+          // kind of VU :-)
+
+          if ((chipByte & 0x80) == 0x80)
+          {
+            Tone3Bar = barMax;
+          }
+
+          if ((chipByte & 0xA0) == 0xA0)
+          {
+            Tone2Bar = barMax;
+          }
+
+          if ((chipByte & 0xC0) == 0xC0)
+          {
+            Tone1Bar = barMax;
+          }
+
+          //Console.WriteLine("Send Chip Byte {0}", chipByte);
+          LastByteSent = chipByte;
+          break;
+
+        case 0x66:
+          // End of current song data
+          _dataPointer = 0; // Reset and loop our song
+          SongLooping = true; // Set this so that calling program knows if song is looping
+
+          //Console.WriteLine("Reset Data Pointer");
+          break;
+
+        default:
+          // This shouldn't be needed, well at least the data pointer check shouldn't be needed anyway
+          // beacuse in theory we should always hit a 0x66 at the end.  However if the 66 is not found, then
+          // this stops a program crash due to trying to access data outside the array.
+          // The increment is still needed however, as that allows us to skip over VGM commands that we don't yet implement.
+          _dataPointer++;
+          if(_dataPointer > (_chipData.Length - 1))
+          {
+            _dataPointer = 0;
+          }
+
+          //Console.WriteLine("Unknown VGM Command {0}", currentDataByte);
+          break;
+      }
+    }
+
+    private void LoadHeader(BinaryReader reader)
+    {
+      byte[] magicBytes = reader.ReadBytes(4);
+      string magic = Encoding.Default.GetString(magicBytes).Trim();
+
+      if(magic != "Vgm")
+      {
+        throw new ApplicationException("Specifed file is NOT a VGM file");
