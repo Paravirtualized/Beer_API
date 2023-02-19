@@ -219,3 +219,62 @@ namespace VGMPlayer
       if(magic != "Vgm")
       {
         throw new ApplicationException("Specifed file is NOT a VGM file");
+      }
+
+      _header.VgmMagic = magic;
+
+      _header.EofOffset = reader.ReadUInt32() + 4; // Eof val is 4 bytes in, so the actual offset is this + 4
+      _header.Version = reader.ReadUInt32();
+      _header.Sn76489Clock = reader.ReadUInt32();
+      _header.Ym2413Clock = reader.ReadUInt32();
+      _header.Gd3Offset = reader.ReadUInt32();
+      _header.TotalSamples = reader.ReadUInt32();
+      _header.LoopOffset = reader.ReadUInt32();
+      _header.LoopOffset = reader.ReadUInt32();
+      _header.Rate = reader.ReadUInt32();
+      _header.SnFb = reader.ReadUInt16();
+      _header.Snw = reader.ReadByte();
+      _header.Reserved = reader.ReadByte();
+      _header.Ym2612Clock = reader.ReadUInt32();
+      _header.Ym2151Clock = reader.ReadUInt32();
+
+      // From this point in the file, the following offset + the current file pointer is the ACTUAL location of the chip data
+      // so we need to work out and record what that location actually is.
+      // In most cases it will be 0x40 for v1.50 and prior, but it CAN be different, esp in the V1.50 VGM spec
+      // yes this is a messy way of doing it, and if the data position is greater than 32 bits then where screwed
+      // however, 32 bits tends to suggest a 4gb file, and Iv'e not seen one break the 10mb barrier yet, so I think where
+      // fairly safe. :-)
+      long currentFilePointer = reader.BaseStream.Position;
+      _header.VgmDataOffset = reader.ReadUInt32();
+      if (_header.VgmDataOffset == 0)
+      {
+        // No offset was specified, so we default to 0x40 which is the known start offset.
+        _header.VgmDataOffset = 0x40;
+      }
+      else
+      {
+        // There is a positive offset, so lets take the file pos, add that on and store that.
+        _header.VgmDataOffset = (uint)((int)currentFilePointer + _header.VgmDataOffset);
+      }
+
+      // We don't use the last 2 reserved words in the header
+      var reserved = reader.ReadUInt32();
+      reserved = reader.ReadUInt32();
+
+    }
+
+    private void LoadChipData(BinaryReader reader)
+    {
+      List<byte> result = new List<byte>();
+
+      // Move the file stream to the start of our data
+      reader.BaseStream.Seek(_header.VgmDataOffset, SeekOrigin.Begin);
+
+      var dataSize = _header.EofOffset - _header.VgmDataOffset;
+
+      result.AddRange(reader.ReadBytes((int)dataSize));
+      _chipData = result.ToArray();
+    }
+
+  }
+}
